@@ -1,6 +1,7 @@
 
 require 'rubygems'
 require 'httparty'
+require_relative 'menu.rb'
 #Rutas REST que hay que consumir
     ##  http://javendanon.pythonanywhere.com/verificaRut
     ##  http://javendanon.pythonanywhere.com/nombrePropio
@@ -14,4 +15,6 @@ data = HTTParty.post('http://javendanon.pythonanywhere.com/verificaRut',
     }
 )
 puts data
+
+mainMenu()
 
