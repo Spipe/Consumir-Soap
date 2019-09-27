@@ -9,12 +9,7 @@ require_relative 'menu.rb'
 Base_uri = 'http://javendanon.pythonanywhere.com/'
 
 # Ejemplo del rut
-data = HTTParty.post('http://javendanon.pythonanywhere.com/verificaRut',
-    body:{
-        rut: '19405068-2'
-    }
-)
-puts data
+
 
 mainMenu()
 
