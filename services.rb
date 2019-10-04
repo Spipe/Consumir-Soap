@@ -1,6 +1,7 @@
 
 
 @base_uri_rest = 'http://javendanon.pythonanywhere.com/'
+@base_uri_soap = 'http://localhost:8000'
 
 def validateRut(api)
     puts 'Ingrese el rut (ej 19405068-2): '
@@ -13,6 +14,20 @@ def validateRut(api)
         )
         puts data
     else
+        client = Savon.client(
+            wsdl:@base_uri_soap
+        )
+        data = client.operations
+
+        puts data
+
+       # data_1= client.call(
+       #     :get_all_related_info,
+       #     message: { id: 1 }
+       # )
+
+      #  puts data_1
+        
         # soap call
 
     end
@@ -38,6 +53,7 @@ def properCase(api)
         )
     puts data
     else
+        
         #soap call 
     end
 end 

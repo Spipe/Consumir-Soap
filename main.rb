@@ -1,6 +1,7 @@
 
 require 'rubygems'
 require 'httparty'
+require 'savon'
 require_relative 'menu.rb'
 #Rutas REST que hay que consumir
     ##  http://javendanon.pythonanywhere.com/verificaRut

@@ -13,6 +13,7 @@ Nombre Propio: El método debe recibir un apellido paterno (un campo de entrada)
 Deben instalar las siguientes dependencias para que funcione correctamente y tener instalado ruby 2.6 en su PC, además de que esté en el PATH
 ```
 gem install httparty
+gem install savon --version '~> 2.0'
 ```
 Para levantar el servidor se debe ejecutar, en la carpeta raíz del repo
 ```
