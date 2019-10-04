@@ -1,11 +1,18 @@
-
+require 'io/console'
 
 @base_uri_rest = 'http://javendanon.pythonanywhere.com/'
-@base_uri_soap = 'http://localhost:8000'
+@base_uri_soap = 'http://localhost:8000/'
+
+
+def waiting                                                                                                               
+    puts "Presione cualquier tecla para continuar..."                                                                                                    
+    STDIN.getch                                                                                                     
+end  
 
 def validateRut(api)
     puts 'Ingrese el rut (ej 19405068-2): '
     @rut = gets.chomp
+    @rutSpliteado = @rut.split('-')
     if @api=='REST'
         data = HTTParty.post(@base_uri_rest + 'verificaRut',
             body:{
@@ -30,7 +37,9 @@ def validateRut(api)
         
         # soap call
 
+
     end
+    waiting()
 end
 
 def properCase(api)
@@ -42,6 +51,9 @@ def properCase(api)
     @nombres = gets.chomp
     puts 'Ingrese el género: '
     @gender = gets.chomp
+
+
+
     if @api=='REST'
         data = HTTParty.post(@base_uri_rest + 'nombrePropio',
             body:{
@@ -51,10 +63,11 @@ def properCase(api)
                 gender: @gender
             }   
         )
-    puts data
+    puts data.encode('iso-8859-1')
     else
         
         #soap call 
     end
+    waiting()
 end 
 

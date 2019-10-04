@@ -1,8 +1,10 @@
 require_relative 'services.rb'
 
+
 def menuOpciones(api)
     @salir2 = true
     while(@salir2) do
+        Gem.win_platform? ? (system "cls") : (system "clear")
         puts "Menu de opciones API #{@api}"
         puts 'Seleccione una opción de las siguientes'
         puts '1) Validación digito verificador.'
@@ -29,6 +31,7 @@ end
 def mainMenu
     @salir = true
     while (@salir) do
+        Gem.win_platform? ? (system "cls") : (system "clear")
         puts 'Menu de opciones API redes'
         puts 'Seleccione una opción de las siguientes'
         puts '1) API Rest '
