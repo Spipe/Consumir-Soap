@@ -1,5 +1,6 @@
 require 'io/console'
-
+require 'savon'
+require 'httpi'
 @base_uri_rest = 'http://javendanon.pythonanywhere.com/'
 @base_uri_soap = 'http://localhost:8000/'
 
@@ -9,7 +10,7 @@ def waiting
     STDIN.getch                                                                                                     
 end  
 
-def validateRut(api)
+def validateRut(api,client)
     puts 'Ingrese el rut (ej 19405068-2): '
     @rut = gets.chomp
     @rutSpliteado = @rut.split('-')
@@ -22,27 +23,19 @@ def validateRut(api)
         puts data
     else
         client = Savon.client(
-            wsdl:@base_uri_soap
+            wsdl:@base_uri_soap+'?wsdl',
+            pretty_print_xml: true
         )
-        data = client.operations
-
-        puts data
-
-       # data_1= client.call(
-       #     :get_all_related_info,
-       #     message: { id: 1 }
-       # )
-
-      #  puts data_1
-        
-        # soap call
-
-
+        response = client.call(:digito_verificador,message:{
+            rut:@rut,
+            times:1
+        })
+        puts response.doc
     end
     waiting()
 end
 
-def properCase(api)
+def properCase(api,client)
     puts 'Ingrese el apellido paterno: '
     @paterno = gets.chomp
     puts 'Ingrese el apellido materno: '
@@ -51,8 +44,6 @@ def properCase(api)
     @nombres = gets.chomp
     puts 'Ingrese el género: '
     @gender = gets.chomp
-
-
 
     if @api=='REST'
         data = HTTParty.post(@base_uri_rest + 'nombrePropio',
@@ -63,10 +54,15 @@ def properCase(api)
                 gender: @gender
             }   
         )
-    puts data.encode('iso-8859-1')
+    puts data
     else
-        
-        #soap call 
+        response = client.call(:nombre_propio,message:{
+            name:@nombres,
+            gender:@gender,
+            apellidop:@paterno,
+            apellidom:@materno,
+        })
+        puts response.doc
     end
     waiting()
 end 

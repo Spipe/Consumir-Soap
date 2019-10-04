@@ -2,6 +2,10 @@ require_relative 'services.rb'
 
 
 def menuOpciones(api)
+    client = Savon.client(
+            wsdl:@base_uri_soap+'?wsdl',
+            pretty_print_xml: true
+    )
     @salir2 = true
     while(@salir2) do
         Gem.win_platform? ? (system "cls") : (system "clear")
@@ -13,11 +17,11 @@ def menuOpciones(api)
         loop do
             @opcion= gets.chomp.to_i
             if @opcion==1
-                validateRut(@api)
+                validateRut(@api,client)
                 break
             elsif @opcion==2
                 # Funct to validate proper case 
-                properCase(@api)
+                properCase(@api,client)
                 break
             elsif @opcion==3
                 @salir2 = false
