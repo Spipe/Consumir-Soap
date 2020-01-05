@@ -7,7 +7,7 @@ require 'httpi'
 
 def waiting                                                                                                               
     puts "Presione cualquier tecla para continuar..."                                                                                                    
-    STDIN.getch                                                                                                     
+    gets                                                                                                   
 end  
 
 def validateRut(api,client)
@@ -42,7 +42,7 @@ def properCase(api,client)
     @materno = gets.chomp
     puts 'Ingrese los nombres: '
     @nombres = gets.chomp
-    puts 'Ingrese el género: '
+    puts 'Ingrese el género (M/F): '
     @gender = gets.chomp
 
     if @api=='REST'
