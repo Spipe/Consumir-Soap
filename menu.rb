@@ -15,18 +15,21 @@ def menuOpciones(api)
         puts '2) Nombre propio'
         puts '3) Salir y volver al menú anterior'
         loop do
-            @opcion= gets.chomp.to_i
-            if @opcion==1
+            @opcion = gets.chomp
+            if @opcion=='1'
                 validateRut(@api,client)
                 break
-            elsif @opcion==2
+            elsif @opcion=='2'
                 # Funct to validate proper case 
                 properCase(@api,client)
                 break
-            elsif @opcion==3
+            elsif @opcion=='3'
                 @salir2 = false
                 break
+            else
+                puts 'Ingrese una opción correcta: '
             end
+
         end
     end
 end
@@ -42,19 +45,21 @@ def mainMenu
         puts '2) API Soap '
         puts '3) Salir de la aplicación'
         loop do
-            @opcion = gets.chomp.to_i
-            if @opcion==1
+            @opcion = gets.chomp
+            if @opcion==1 or @opcion=='1'
                 @api = 'REST'
                 break
-            elsif @opcion==2
+            elsif @opcion==2 or @opcion=='2'
                 @api = 'Soap'
                 break
-            elsif @opcion==3
+            elsif @opcion==3 or @opcion=='3'
                 @salir = false
                 break
+            else
+                puts 'Ingrese una opción correcta: '
             end
         end
-        if @opcion!=3
+        if @opcion!='3'
             menuOpciones(@api)
         end
     end
