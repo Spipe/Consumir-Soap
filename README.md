@@ -14,8 +14,13 @@ Deben instalar las siguientes dependencias para que funcione correctamente y ten
 ```
 gem install httparty
 gem install savon --version '~> 2.0'
+
+# Ejecución
+
 ```
-Para levantar el servidor se debe ejecutar, en la carpeta raíz del repo
+Para levantar el cliente se debe ejecutar el siguiente comando desde la terminal, en la carpeta raíz del repositorio
 ```
 ruby main.rb
 ```
+
+En el cliente (en general) se puede seleccionar cual es la API a la que se le harán las peticiones, dependiendo de estas las respuestas van a variar entre JSON y XML

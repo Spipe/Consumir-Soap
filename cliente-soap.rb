@@ -1,39 +1,4 @@
-require 'io/console'
-require 'savon'
-require 'httpi'
-@base_uri_rest = 'http://javendanon.pythonanywhere.com/'
-@base_uri_soap = 'http://localhost:8000/'
-
-
-def waiting                                                                                                               
-    puts "Presione cualquier tecla para continuar..."                                                                                                    
-    gets                                                                                                   
-end  
-
-def validateRut(api,client)
-    puts 'Ingrese el rut (ej 19405068-2): '
-    @rut = gets.chomp
-    @rutSpliteado = @rut.split('-')
-    if @api=='REST'
-        data = HTTParty.post(@base_uri_rest + 'verificaRut',
-            body:{
-                rut: @rut
-            }
-        )
-        puts data
-    else
-        client = Savon.client(
-            wsdl:@base_uri_soap+'?wsdl',
-            pretty_print_xml: true
-        )
-        response = client.call(:digito_verificador,message:{
-            rut:@rut,
-            times:1
-        })
-        puts response.doc
-    end
-    waiting()
-end
+require_relative 'scripts.rb'
 
 def properCase(api,client)
     puts 'Ingrese el apellido paterno: '
@@ -81,4 +46,3 @@ def properCase(api,client)
     end
     waiting()
 end 
-

@@ -1,4 +1,5 @@
-require_relative 'services.rb'
+require_relative 'cliente-rest.rb'
+require_relative 'cliente-soap.rb'
 
 
 def menuOpciones(api)
